@@ -1,0 +1,18 @@
+{
+  "accountAssociation": {
+    "header": "eyJmaWQiOjE3NjUyLCJ0eXBlIjoiY3VzdG9keSIsImtleSI6IjB4RGM1QmU0Mjg2MEZBRDQ3MTFlQTQ5Nzk4QzE2RDRmMjgwQUMxMzZGMyJ9",
+    "payload": "eyJkb21haW4iOiJib29wLXRvLWVhcm4udmVyY2VsLmFwcCJ9",
+    "signature": "MHhlZGQ2ZTBlMjhhNWE5MDI1NWU2OWJmY2E2ODU2ZGQwZjYwMDk4YWU2MDRkYmMzZjI3NjRkYTRjYzhhYmQ2NWNiNDFhNDgxYTEyMTNjMDYzYzllNGVmMzQzZTI4Nzg3OWUyMmIzNjcwNDU2Y2NkMjNhNDk4Y2I3ZDRjMTk5NDczZjFi"
+  },
+  "frame": {
+    "version": "1",
+    "name": "BoopToEarn",
+    "iconUrl": "https://boop-to-earn.vercel.app/booplogo.png",
+    "homeUrl": "https://boop-to-earn.vercel.app",
+    "imageUrl": "https://boop-to-earn.vercel.app/image.png",
+    "buttonTitle": "Claim Boop",
+    "splashImageUrl": "https://boop-to-earn.vercel.app/splash.png",
+    "splashBackgroundColor": "#00BFFF",
+    "webhookUrl": "https://boop-to-earn.vercel.app/api/webhook"
+  }
+}

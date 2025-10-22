@@ -27,7 +27,7 @@
     <style>
       body {
         margin: 0;
-        background: linear-gradient(135deg, #00C9A7, #8B5CF6);
+        background: linear-gradient(135deg, #00c9a7, #8b5cf6);
         color: white;
         font-family: "Poppins", sans-serif;
         display: flex;
@@ -68,6 +68,7 @@
         margin: 20px 0;
         box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
         transition: transform 0.2s ease, box-shadow 0.2s ease;
+        background-color: rgba(255, 255, 255, 0.1);
       }
 
       .bark-image:hover {
@@ -90,11 +91,13 @@
       <div id="totalUsers">Total Users: ...</div>
     </div>
 
+    <!-- ✅ Absolute + Fallback Image Fix -->
     <img
-      src="https://bark-to-earn.vercel.app/doglogo.png"
-      alt="Dog Button"
+      src="https://bark-to-earn.vercel.app/barklogo.png"
+      alt="Bark Button"
       class="bark-image"
       id="barkButton"
+      onerror="this.src='https://raw.githubusercontent.com/monu10g32/bark-to-earn/main/barklogo.png';"
     />
 
     <h2 id="totalTokens" class="counter">Bark Tokens Distributed: ...</h2>
@@ -112,11 +115,13 @@
       import { farcasterMiniApp } from "https://esm.sh/@farcaster/miniapp-wagmi-connector";
       import { sdk } from "https://esm.sh/@farcaster/miniapp-sdk";
 
-      // 🔧 Config
+      // 🔧 Wagmi Config
       const config = createConfig({
         chains: [base],
         transports: {
-          [base.id]: http("https://base-mainnet.g.alchemy.com/v2/5x3Z8Qy0iG5t1VXmwiOR_")
+          [base.id]: http(
+            "https://base-mainnet.g.alchemy.com/v2/5x3Z8Qy0iG5t1VXmwiOR_"
+          )
         }
       });
 
@@ -129,9 +134,15 @@
             readContract(config, { address, abi, functionName: "totalUniqueUsers" })
           ]);
 
-          document.getElementById("totalBarks").innerText = `Total Barks: ${barks}`;
-          document.getElementById("totalTokens").innerText = `Bark Tokens Distributed: ${formatLargeNumber(tokens)}`;
-          document.getElementById("totalUsers").innerText = `Total Users: ${users}`;
+          document.getElementById(
+            "totalBarks"
+          ).innerText = `Total Barks: ${barks}`;
+          document.getElementById(
+            "totalTokens"
+          ).innerText = `Bark Tokens Distributed: ${formatLargeNumber(tokens)}`;
+          document.getElementById(
+            "totalUsers"
+          ).innerText = `Total Users: ${users}`;
         } catch (err) {
           console.error("Stats fetch failed:", err);
         }
@@ -148,8 +159,9 @@
         try {
           await connect(config, { connector: farcasterMiniApp() });
 
-          // Contract placeholder (replace after deployment)
-          const { address, abi } = await fetch("/contract.json").then(r => r.json());
+          const { address, abi } = await fetch("/contract.json").then((r) =>
+            r.json()
+          );
 
           const btn = document.getElementById("barkButton");
           btn.addEventListener("click", async () => {
